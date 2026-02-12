@@ -91,11 +91,11 @@
             <div class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium mb-1">Nome e sobrenome</label>
-                    <input type="text" placeholder="Nome e sobrenome" required class="w-full p-3 bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#ff299e] transition" style="border-radius: 8px;">
+                    <input type="text" id="name-input" placeholder="Nome e sobrenome" required class="w-full p-3 bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#ff299e] transition" style="border-radius: 8px;">
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1">E-mail</label>
-                    <input type="email" placeholder="E-mail" required class="w-full p-3 bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#ff299e] transition" style="border-radius: 8px;">
+                    <input type="email" id="email-input" placeholder="E-mail" required class="w-full p-3 bg-gray-50 border border-gray-300 text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#ff299e] transition" style="border-radius: 8px;">
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
                 </span>
                 <h2 class="text-xl font-bold">Pagamento</h2>
             </div>
-            <button type="button" onclick="window.location.href='https://go.ironpayapp.com.br/rthkn7papn'" style="background-color: #ff299e; border-radius: 10px;" class="w-full p-4 text-white font-bold text-lg uppercase hover:opacity-90 flex items-center justify-center">
+            <button type="button" id="pay-button" style="background-color: #ff299e; border-radius: 10px;" class="w-full p-4 text-white font-bold text-lg uppercase hover:opacity-90 flex items-center justify-center">
                 <span>PAGAR AGORA</span>
             </button>
             <div class="mt-4 text-center text-sm opacity-80 flex items-center justify-center gap-2">
@@ -121,6 +121,17 @@
     <div id="social-proof-container" class="fixed bottom-4 left-4 z-50"></div>
 
     <script>
+        document.getElementById('pay-button').addEventListener('click', function() {
+            const name = document.getElementById('name-input').value;
+            const email = document.getElementById('email-input').value;
+            
+            if (name && email) {
+                window.location.href = 'https://go.ironpayapp.com.br/rthkn7papn';
+            } else {
+                alert('Por favor, preencha seu nome e e-mail.');
+            }
+        });
+
         // Social Proof Logic
         const socialProofSettings = {"enabled":true,"names":["Maria", "José", "Ana", "João", "Antônio", "Francisco", "Carlos", "Paulo", "Pedro", "Lucas", "Luiz", "Marcos", "Gabriel", "Rafael", "Daniel", "Marcelo", "Bruno", "Eduardo", "Felipe", "Sandra", "Camila", "Amanda", "Fernanda", "Patrícia", "Juliana", "Aline", "Mariana", "Vanessa", "Carolina"],"payoutMessage":"{{name}} acabou de pagar {{value}}","payoutMin":150,"payoutMax":500,"initialDelay":5,"displayDuration":4,"intervalMin":8,"intervalMax":20};
         
